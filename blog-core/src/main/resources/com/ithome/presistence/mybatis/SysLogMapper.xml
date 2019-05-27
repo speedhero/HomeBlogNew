@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ithome.presistence.mapper.SysLogMapper">
+  <resultMap id="BaseResultMap" type="com.ithome.presistence.beans.SysLog">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="log_level" jdbcType="CHAR" property="logLevel" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="spider_type" jdbcType="VARCHAR" property="spiderType" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="ua" jdbcType="VARCHAR" property="ua" />
+    <result column="os" jdbcType="VARCHAR" property="os" />
+    <result column="browser" jdbcType="VARCHAR" property="browser" />
+    <result column="request_url" jdbcType="VARCHAR" property="requestUrl" />
+    <result column="referer" jdbcType="VARCHAR" property="referer" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, user_id, type, log_level, content, spider_type, ip, ua, os, browser, request_url, 
+    referer, create_time, update_time
+  </sql>
+</mapper>

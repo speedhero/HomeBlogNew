@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ithome.presistence.mapper.BizArticleMapper">
+  <resultMap id="BaseResultMap" type="com.ithome.presistence.beans.BizArticle">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="cover_image" jdbcType="VARCHAR" property="coverImage" />
+    <result column="qrcode_path" jdbcType="VARCHAR" property="qrcodePath" />
+    <result column="is_markdown" jdbcType="BIT" property="isMarkdown" />
+    <result column="top" jdbcType="BIT" property="top" />
+    <result column="type_id" jdbcType="BIGINT" property="typeId" />
+    <result column="status" jdbcType="BIT" property="status" />
+    <result column="recommended" jdbcType="BIT" property="recommended" />
+    <result column="original" jdbcType="BIT" property="original" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="keywords" jdbcType="VARCHAR" property="keywords" />
+    <result column="comment" jdbcType="BIT" property="comment" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ithome.presistence.beans.BizArticleWithBLOBs">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="content_md" jdbcType="LONGVARCHAR" property="contentMd" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, title, user_id, cover_image, qrcode_path, is_markdown, top, type_id, status, 
+    recommended, original, description, keywords, comment, create_time, update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    content, content_md
+  </sql>
+</mapper>
