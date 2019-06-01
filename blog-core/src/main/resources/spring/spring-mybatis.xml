@@ -63,6 +63,19 @@
         <property name="mapperLocations" value="classpath:mybatis/*.xml" />
         <!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 ，该属性可以给包中的类注册别名，注册后可以直接使用类名，而不用使用全限定的类名 -->
         <property name="typeAliasesPackage" value="com.ithome.presistence.beans" />
+        <!-- 注意其他配置 -->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <!--使用下面的方式配置参数，一行配置一个 -->
+                        <value>
+                            params=value1
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
 
     <!--在Spring中配置Mapper接口 -->
@@ -104,6 +117,7 @@
             <tx:method name="load*" propagation="SUPPORTS" />
             <tx:method name="search*" propagation="SUPPORTS" />
             <tx:method name="datagrid*" propagation="SUPPORTS" />
+            <tx:method name="list*" propagation="SUPPORTS" />
 
             <tx:method name="*" propagation="SUPPORTS" />
         </tx:attributes>

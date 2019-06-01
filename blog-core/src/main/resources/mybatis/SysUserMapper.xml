@@ -41,4 +41,66 @@
     company, blog, location, source, privacy, notification, score, experience, reg_ip, 
     last_login_ip, last_login_time, login_count, remark, status, create_time, update_time
   </sql>
+
+  <select id="findPageBreakByCondition" parameterType="com.ithome.bussiness.vo.UserConditionVO" resultMap="BaseResultMap">
+    SELECT
+    s.*
+    FROM
+    sys_user s
+    WHERE
+    1 = 1
+    <if test="keywords != null and keywords != '' ">
+      AND
+      (
+      s.nickname LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%') or
+      s.mobile  LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%') or
+      s.username LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%') or
+      s.password LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%') or
+      s.email LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%') or
+      s.qq LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%') or
+      s.remark LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%')
+      )
+    </if>
+    <!-- 查询用户信息 -->
+    <if test="user != null">
+      <if test="user.id!=null">
+        AND s.id = #{user.id}
+      </if>
+      <if test="user.gender!=null">
+        AND s.gender = #{user.gender}
+      </if>
+      <if test="user.userType!=null">
+        AND s.user_type = #{user.userType}
+      </if>
+      <if test="user.username!=null">
+        AND s.username = #{user.username}
+      </if>
+      <if test="user.password!=null">
+        AND s.password = #{user.password}
+      </if>
+      <if test="user.lastLoginIp!=null">
+        AND s.last_login_ip = #{user.lastLoginIp}
+      </if>
+      <if test="user.lastLoginTime!=null">
+        AND s.last_login_time = #{user.lastLoginTime}
+      </if>
+    </if>
+    GROUP BY
+    s.id
+    ORDER BY
+    s.create_time DESC
+  </select>
+
+
+  <select id="listByRoleId" parameterType="Long" resultMap="BaseResultMap">
+    SELECT
+      s.id,
+      s.username,
+      s.nickname
+    FROM
+      sys_user s
+        INNER JOIN sys_user_role sur ON  sur.user_id = s.id
+    WHERE
+      sur.role_id = #{roleId}
+  </select>
 </mapper>

@@ -11,10 +11,10 @@ import java.security.SecureRandom;
 
 /**
  *
- * @author yadong.zhang (yadong.zhang0415(a)gmail.com)
+ * @author Rick jiang (speedhero@126.com)
  * @website https://www.zhyd.me
  * @version 1.0
- * @date 2018/4/16 16:26
+ * @date 2019/4/16 16:26
  * @since 1.0
  */
 public class AesUtil {

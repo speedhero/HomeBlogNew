@@ -26,8 +26,8 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <result column="content" jdbcType="LONGVARCHAR" property="content" />
-    <result column="content_md" jdbcType="LONGVARCHAR" property="contentMd" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" javaType="String"/>
+    <result column="content_md" jdbcType="LONGVARCHAR" property="contentMd" javaType="String"/>
   </resultMap>
   <sql id="Base_Column_List">
     <!--

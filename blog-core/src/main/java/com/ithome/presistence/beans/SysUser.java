@@ -43,7 +43,7 @@ public class SysUser {
     /**
      * 性别
      */
-    private Byte gender;
+    private Integer gender;
 
     /**
      * 头像地址
@@ -79,12 +79,12 @@ public class SysUser {
     /**
      * 隐私（1：公开，0：不公开）
      */
-    private Byte privacy;
+    private Integer privacy;
 
     /**
      * 通知：(1：通知显示消息详情，2：通知不显示详情)
      */
-    private Byte notification;
+    private Integer notification;
 
     /**
      * 金币值
@@ -283,7 +283,7 @@ public class SysUser {
      *
      * @return gender - 性别
      */
-    public Byte getGender() {
+    public Integer getGender() {
         return gender;
     }
 
@@ -292,7 +292,7 @@ public class SysUser {
      *
      * @param gender 性别
      */
-    public void setGender(Byte gender) {
+    public void setGender(Integer gender) {
         this.gender = gender;
     }
 
@@ -409,7 +409,7 @@ public class SysUser {
      *
      * @return privacy - 隐私（1：公开，0：不公开）
      */
-    public Byte getPrivacy() {
+    public Integer getPrivacy() {
         return privacy;
     }
 
@@ -418,7 +418,7 @@ public class SysUser {
      *
      * @param privacy 隐私（1：公开，0：不公开）
      */
-    public void setPrivacy(Byte privacy) {
+    public void setPrivacy(Integer privacy) {
         this.privacy = privacy;
     }
 
@@ -427,7 +427,7 @@ public class SysUser {
      *
      * @return notification - 通知：(1：通知显示消息详情，2：通知不显示详情)
      */
-    public Byte getNotification() {
+    public Integer getNotification() {
         return notification;
     }
 
@@ -436,7 +436,7 @@ public class SysUser {
      *
      * @param notification 通知：(1：通知显示消息详情，2：通知不显示详情)
      */
-    public void setNotification(Byte notification) {
+    public void setNotification(Integer notification) {
         this.notification = notification;
     }
 

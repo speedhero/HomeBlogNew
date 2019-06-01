@@ -1,7 +1,7 @@
 package com.ithome.bussiness.enums;
 
 /**
- * @author rick jiang (rick jiang0415(a)gmail.com)
+ * @author rick jiang (speedhero@126.com)
  * @version 1.0
  * @website https://www.zhyd.me
  * @date 2019/4/16 16:26

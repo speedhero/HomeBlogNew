@@ -5,7 +5,7 @@ import com.ithome.bussiness.enums.*;
 import com.ithome.framework.object.AbstractBO;
 import com.ithome.util.PasswordUtil;
 import org.springframework.util.StringUtils;
-
+import com.ithome.presistence.beans.SysUser;
 import java.util.Date;
 
 public class User  extends AbstractBO {
