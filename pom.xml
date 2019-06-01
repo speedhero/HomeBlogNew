@@ -34,6 +34,7 @@
         <aspectj.version>1.9.2</aspectj.version>
         <jackson.version>2.9.8</jackson.version>
         <shiro.version>1.4.0</shiro.version>
+        <redis.version>2.1.3.RELEASE</redis.version>
     </properties>
 
     <!--为了防止用Maven管理Spring项目时，不同的项目依赖了不同版本的Spring，可以使用Maven BOM来解决者一问题。-->

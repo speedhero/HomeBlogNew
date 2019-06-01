@@ -1,4 +1,4 @@
-package com.ithome.framework.object;
+package com.ithome.framework.VO;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

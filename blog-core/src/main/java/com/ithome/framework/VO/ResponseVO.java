@@ -1,4 +1,4 @@
-package com.ithome.framework.object;
+package com.ithome.framework.VO;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;

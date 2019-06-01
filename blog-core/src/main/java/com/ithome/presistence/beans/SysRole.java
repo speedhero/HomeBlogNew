@@ -124,4 +124,16 @@ public class SysRole {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+
+    @Transient
+    private Integer selected;
+
+    public Integer getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Integer selected) {
+        this.selected = selected;
+    }
 }

@@ -1,6 +1,7 @@
 package com.ithome.presistence.beans;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.*;
 
 @Table(name = "sys_resources")
@@ -228,4 +229,38 @@ public class SysResources {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+
+
+    @Transient
+    private String checked;
+
+    public String getChecked() {
+        return checked;
+    }
+
+    public void setChecked(String checked) {
+        this.checked = checked;
+    }
+
+    public SysResources getParent() {
+        return parent;
+    }
+
+    public void setParent(SysResources parent) {
+        this.parent = parent;
+    }
+
+    public List<SysResources> getNodes() {
+        return nodes;
+    }
+
+    public void setNodes(List<SysResources> nodes) {
+        this.nodes = nodes;
+    }
+
+    @Transient
+    private SysResources parent;
+    @Transient
+    private List<SysResources> nodes;
 }

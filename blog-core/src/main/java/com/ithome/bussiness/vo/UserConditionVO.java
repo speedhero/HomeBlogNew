@@ -1,7 +1,7 @@
 package com.ithome.bussiness.vo;
 
 import com.ithome.bussiness.entity.User;
-import com.ithome.framework.object.BaseConditionVO;
+import com.ithome.framework.VO.BaseConditionVO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
