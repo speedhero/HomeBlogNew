@@ -17,9 +17,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Slf4j
-@RestController
+@Controller
 @RequestMapping("/")
 public class IndexController {
+
+
+    @RequestMapping(value="/", method=RequestMethod.GET)
+    public String index(){
+        return "index";
+    }
+
 
     @RequestMapping("/hello")
     @ResponseBody

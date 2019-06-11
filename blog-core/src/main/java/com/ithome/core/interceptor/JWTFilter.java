@@ -11,6 +11,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLEncoder;
 
 @Slf4j
 public class JWTFilter extends BasicHttpAuthenticationFilter {
@@ -57,9 +59,11 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
                 executeLogin(request, response);
             } catch (Exception e) {
                 throw new CustomException("登录权限不足！");
+                //token 错误
+              //  responseError(response, e.getMessage());
             }
         }
-
+        //如果请求头不存在 Token，则可能是执行登陆操作或者是游客状态访问，无需检查 token，直接返回 true
         return true;
     }
 
@@ -85,5 +89,19 @@ public class JWTFilter extends BasicHttpAuthenticationFilter {
             return false;
         }
         return super.preHandle(request, response);
+    }
+
+    /**
+     * 将非法请求跳转到 /unauthorized/**
+     */
+    private void responseError(ServletResponse response, String message) {
+        try {
+            HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+            //设置编码，否则中文字符在重定向时会变为空字符串
+            message = URLEncoder.encode(message, "UTF-8");
+            httpServletResponse.sendRedirect("/unauthorized/" + message);
+        } catch (IOException e) {
+            log.error(e.getMessage());
+        }
     }
 }

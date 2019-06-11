@@ -31,6 +31,8 @@
                 <!--所有url都可以匿名访问-->
                <!-- /** = anon-->
                 <!-- 对静态资源设置匿名访问 -->
+                /WEB-INF/html/** = anon
+                /html/** = anon
                 /images/** = anon
                 /js/** = anon
                 /styles/** = anon

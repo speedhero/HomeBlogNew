@@ -87,6 +87,6 @@
     <param-value>classpath*:spring/*.xml</param-value>
   </context-param>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>/index</welcome-file>
   </welcome-file-list>
 </web-app>
