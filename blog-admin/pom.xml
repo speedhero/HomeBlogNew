@@ -23,6 +23,11 @@
     </properties>
 
     <dependencies>
+        <!--多模块依赖 version 通过dependencyManagement管理-->
+        <dependency>
+            <groupId>com.ithome</groupId>
+            <artifactId>blog-core</artifactId>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
