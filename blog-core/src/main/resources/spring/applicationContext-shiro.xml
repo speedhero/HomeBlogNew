@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
     <!-- web.xml中shiro的filter对应的bean -->
+    <bean id="JWTFilter" class="com.ithome.core.interceptor.JWTFilter"/>
     <!-- Shiro 的Web过滤器 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager" />
@@ -11,48 +14,91 @@
         <!-- 认证成功统一跳转到first.action，建议不配置，shiro认证成功自动到上一个请求路径 -->
         <!-- <property name="successUrl" value="/first.action"/> -->
         <!-- 通过unauthorizedUrl指定没有权限操作时跳转页面-->
-        <property name="unauthorizedUrl" value="/refuse.jsp" />
+        <property name="unauthorizedUrl" value="/refuse" />
         <!-- 自定义filter配置 -->
         <property name="filters">
-            <map>
+            <util:map>
                 <!-- 将自定义 的FormAuthenticationFilter注入shiroFilter中-->
-                <entry key="authc" value-ref="formAuthenticationFilter" />
-            </map>
+                <!--<entry key="authc" value-ref="formAuthenticationFilter" />-->
+                <entry key="jwt" value-ref="JWTFilter"/>
+            </util:map>
         </property>
 
         <!-- 过虑器链定义，从上向下顺序执行，一般将/**放在最下边 -->
         <property name="filterChainDefinitions">
             <value>
+                /login=anon
                 <!--所有url都可以匿名访问-->
-                /** = anon
+               <!-- /** = anon-->
                 <!-- 对静态资源设置匿名访问 -->
                 /images/** = anon
                 /js/** = anon
                 /styles/** = anon
                 <!-- 请求 logout.action地址，shiro去清除session-->
                 /logout = logout
+                <!--所有url都验证jwt-->
+                /** =jwt
             </value>
         </property>
+    </bean>
+
+    <!--禁用session ，解决报错，组装默认的subjectDAO-->
+    <bean id="subjectDAO" class="org.apache.shiro.mgt.DefaultSubjectDAO">
+        <property name="sessionStorageEvaluator" ref="sessionStorageEvaluator"/>
+    </bean>
+    <bean id="sessionStorageEvaluator" class="org.apache.shiro.mgt.DefaultSessionStorageEvaluator">
+        <property name="sessionStorageEnabled" value="false"/>
+    </bean>
+
+    <!-- <bean id="cacheManager" class=""></bean>-->
+    <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <property name="sessionIdCookieEnabled" value="false"/>
+        <!-- 禁用掉会话调度器 -->
+        <property name="sessionValidationSchedulerEnabled" value="false"/>
+        <!--<property name="sessionIdUrlRewritingEnabled" value="false"/>-->
     </bean>
 
     <!-- securityManager安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="customRealm" />
-    </bean>
-    <!-- realm -->
-    <bean id="customRealm" class="cn.itcast.ssm.shiro.CustomRealm">
+        <property name="subjectDAO" ref="subjectDAO" />
+        <property name="sessionManager" ref="sessionManager"/>
     </bean>
 
+    <!-- 相当于调用SecurityUtils.setSecurityManager(securityManager) -->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod" value="org.apache.shiro.SecurityUtils.setSecurityManager"/>
+        <property name="arguments" ref="securityManager"/>
+    </bean>
+
+
+
     <!-- 凭证匹配器 -->
-    <bean id="credentialsMatcher"
+  <!--  <bean id="credentialsMatcher"
           class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
         <property name="hashAlgorithmName" value="md5" />
         <property name="hashIterations" value="1" />
+    </bean>-->
+    <!--jwt凭证匹配器-->
+    <bean id="jwtCredentialsMatcher"
+          class="com.ithome.core.shiro.credentials.JwtCredentialsMatcher">
     </bean>
 
     <!-- realm -->
-    <bean id="customRealm" class="cn.itcast.ssm.shiro.CustomRealm">
+    <bean id="customRealm" class="com.ithome.core.shiro.realm.ShiroJwtRealm">
         <!-- 将凭证匹配器设置到realm中，realm按照凭证匹配器的要求进行散列 -->
-        <property name="credentialsMatcher" ref="credentialsMatcher"/>
+        <property name="credentialsMatcher" ref="jwtCredentialsMatcher"/>
     </bean>
+
+     <!-- Enable Shiro Annotations for Spring-configured beans.  Only run after the lifecycleBeanProcessor has run: -->
+     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+     <!--启用 IOC 容器中使用 shiro 的注解. 但必须在配置了 LifecycleBeanPostProcessor 之后才可以使用.-->
+     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"  depends-on="lifecycleBeanPostProcessor" >
+         <property name="proxyTargetClass" value="true"/>
+     </bean>
+     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+         <property name="securityManager" ref="securityManager"/>
+     </bean>
+
+
 </beans>

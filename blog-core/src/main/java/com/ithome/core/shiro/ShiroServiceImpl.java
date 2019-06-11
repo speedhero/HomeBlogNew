@@ -1,7 +1,7 @@
-package com.bbs.blog.core.shiro;
+package com.ithome.core.shiro;
 
 
-import com.bbs.blog.core.shiro.realm.ShiroRealm;
+import com.ithome.core.shiro.realm.ShiroRealm;
 import com.ithome.bussiness.entity.Resources;
 import com.ithome.bussiness.entity.User;
 import com.ithome.bussiness.service.interfaces.SysResourcesService;

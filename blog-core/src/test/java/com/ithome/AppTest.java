@@ -10,6 +10,7 @@ import com.ithome.bussiness.vo.UserConditionVO;
 import com.ithome.presistence.beans.SysUser;
 import javafx.application.Application;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -35,6 +36,8 @@ public class AppTest
         /*F:\webApp\HomeBlogNew\blog-core\src\main\resources\spring\applicationContext.xml*/
        // ApplicationContext context=new ClassPathXmlApplicationContext("file:F:/webApp/HomeBlogNew/blog-core/src/main/resources/spring/applicationContext.xml");
        // log.info(JSONArray.toJSONString(context.getBeanDefinitionNames()));
+        LifecycleBeanPostProcessor postProcessor= (LifecycleBeanPostProcessor)context.getBean("lifecycleBeanPostProcessor");
+        System.out.println(postProcessor);
         SysUserService sysUserService= (SysUserService)context.getBean("sysUserServiceImpl");
         List<User>  users=sysUserService.listAll();
         log.info(users.toString());
@@ -49,8 +52,6 @@ public class AppTest
         List<User> pageList = pageInfo.getList();
         log.info(pageList.toString());
         //将结果存入map进行传送
-
-
 
     }
 }

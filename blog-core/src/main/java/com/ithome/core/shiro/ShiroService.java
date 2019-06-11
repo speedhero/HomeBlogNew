@@ -1,4 +1,4 @@
-package com.bbs.blog.core.shiro;
+package com.ithome.core.shiro;
 
 import java.util.Map;
 

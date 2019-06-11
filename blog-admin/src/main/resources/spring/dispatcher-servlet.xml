@@ -10,7 +10,7 @@
                            http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
     <!-- scan the package and the sub package -->
-    <context:component-scan base-package="com.bbs.blog.controller" />
+    <context:component-scan base-package="com.bbs.blog" />
 
     <!-- configure the InternalResourceViewResolver -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"  id="internalResourceViewResolver">

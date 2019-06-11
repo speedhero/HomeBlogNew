@@ -1,4 +1,4 @@
-package com.bbs.blog.core.shiro.realm;
+package com.ithome.core.shiro.realm;
 
 import com.ithome.bussiness.entity.Resources;
 import com.ithome.bussiness.entity.Role;
@@ -8,7 +8,6 @@ import com.ithome.bussiness.enums.UserTypeEnum;
 import com.ithome.bussiness.service.interfaces.SysResourcesService;
 import com.ithome.bussiness.service.interfaces.SysRoleService;
 import com.ithome.bussiness.service.interfaces.SysUserService;
-import com.ithome.presistence.beans.SysRole;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;

@@ -1,4 +1,4 @@
-package com.bbs.blog.core.shiro.credentials;
+package com.ithome.core.shiro.credentials;
 
 
 import com.ithome.bussiness.consts.SessionConst;

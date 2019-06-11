@@ -30,7 +30,7 @@
     <result property="available" jdbcType="BIT" column="available"/>
     <result property="icon" jdbcType="VARCHAR" column="icon"/>
     <result property="checked" jdbcType="VARCHAR" column="checked"/>
-    <association property="parent" javaType="com.zyd.blog.persistence.beans.SysResources">
+    <association property="parent" javaType="com.ithome.presistence.beans.SysResources">
       <result property="id" jdbcType="BIGINT" column="parent_id"/>
       <result property="name" jdbcType="VARCHAR" column="parent_name"/>
       <result property="type" jdbcType="VARCHAR" column="parent_type"/>
@@ -40,7 +40,7 @@
       <result property="available" jdbcType="BIT" column="parent_available"/>
       <result property="icon" jdbcType="VARCHAR" column="parent_icon"/>
     </association>
-    <collection property="nodes" column="node_id" javaType="ArrayList" ofType="com.zyd.blog.persistence.beans.SysResources">
+    <collection property="nodes" column="node_id" javaType="ArrayList" ofType="com.ithome.presistence.beans.SysResources">
       <result property="id" jdbcType="BIGINT" column="node_id"/>
       <result property="name" jdbcType="VARCHAR" column="node_name"/>
       <result property="type" jdbcType="VARCHAR" column="node_type"/>
