@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -65,12 +67,19 @@ public class IndexController {
     //jwt登录方式    @PostMapping 找不到对应handler
     @RequestMapping("/login")
     @ResponseBody
-    public void login(@RequestParam String username, @RequestParam String password, HttpServletResponse response) {
+    public ResponseVO login(@RequestParam String username, @RequestParam String password,HttpServletRequest request, HttpServletResponse response) {
         log.error("username:"+username+"password:"+password);
+        response.setHeader("Access-control-Allow-Origin", ((HttpServletRequest) request).getHeader("Origin"));
+        response.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS,PUT,DELETE");
+        response.setHeader("Access-Control-Allow-Headers", ((HttpServletRequest) request).getHeader("Access-Control-Request-Headers"));
         String jwtToken=loginServiceImpl.jwtLogin(username, password);
         ResponseVO responseVO= ResultUtil.success("登录成功！");
-        responseVO.setData(jwtToken);
+
         log.error("jwtToken:"+jwtToken);
-        response.setHeader("Authorization", jwtToken);
+        response.setHeader("Authorization", jwtToken);//vue header获取不到要塞到返回Data中
+        Map auth=new HashMap();
+        auth.put("Authorization",jwtToken);
+        responseVO.setData(auth);
+        return  responseVO;
     }
 }
