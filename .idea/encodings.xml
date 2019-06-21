@@ -5,6 +5,7 @@
     <file url="file://$PROJECT_DIR$/blog-admin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-core" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/blog-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../homeBlog/build/utils.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../homeBlog/config/index.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/../homeBlog/src/main.js" charset="UTF-8" />
   </component>
